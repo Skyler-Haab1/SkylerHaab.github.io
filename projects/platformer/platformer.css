@@ -3,6 +3,7 @@ body {
 }
 
 canvas {
+  background-color: rgb(42, 38, 43);
   background-image: url("/images/background-image.png");
 }
 
