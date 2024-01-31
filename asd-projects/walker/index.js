@@ -27,8 +27,8 @@ function runProgram(){
 
   // Game Item Objects
 var walker = {          //variable that stores an object such that you can monitor and control the x/y position and x/y speed of the walker game item
-  positionX: 5,
-  positionY: 5,
+  positionX: 385,
+  positionY: 385,
   speedX: 0,
   speedY: 0,
   width: $("#walker").width(),
@@ -36,8 +36,8 @@ var walker = {          //variable that stores an object such that you can monit
 }
 
 var walker2 = {       //variable that stores an object such that you can monitor and control the x/y position and x/y speed of the walker2 game item
-  positionX2: 385,
-  positionY2: 385,
+  positionX2: 5,
+  positionY2: 5,
   speedX2: 0,
   speedY2: 0,
   width2: $("#walker2").width(),
