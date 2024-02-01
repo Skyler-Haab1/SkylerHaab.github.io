@@ -20,6 +20,7 @@ body {
   left: 385px;  /* Uncomment if you want to set a "starting" position */
   top: 385px;   /* Uncomment if you want to set a "starting" position */
   border-radius: 50px;
+  
 }
 #walker2 {
   background-color: rgb(12, 130, 7, 255);

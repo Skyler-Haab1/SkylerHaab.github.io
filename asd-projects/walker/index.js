@@ -10,7 +10,7 @@ function runProgram(){
   // Constant Variables
   var FRAME_RATE = 60;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
-  var KEY = {       //variable for assigning which key codes are assigned to which keyboard inputs
+  var KEY = {       // variable for assigning which key codes are assigned to which keyboard inputs
     ENTER: 13,
     LEFT: 37,
     UP: 38,
@@ -22,11 +22,11 @@ function runProgram(){
     S: 83,
     D: 68,
   };
-  var boardHeight = $("#board").height();        //creates the boardHeight variable needed to make the wallCollision function later
-  var boardWidth = $("#board").width();        //creates the boardWidth variable needed to make the wallCollision function later
+  var boardHeight = $("#board").height();        // creates the boardHeight variable needed to make the wallCollision function later
+  var boardWidth = $("#board").width();        // creates the boardWidth variable needed to make the wallCollision function later
 
   // Game Item Objects
-var walker = {          //variable that stores an object such that you can monitor and control the x/y position and x/y speed of the walker game item
+var walker = {          // variable that stores an object such that you can monitor and control the x/y position and x/y speed of the walker game item
   positionX: 385,
   positionY: 385,
   speedX: 0,
@@ -35,7 +35,7 @@ var walker = {          //variable that stores an object such that you can monit
   height: $("#walker").height(),
 }
 
-var walker2 = {       //variable that stores an object such that you can monitor and control the x/y position and x/y speed of the walker2 game item
+var walker2 = {       // variable that stores an object such that you can monitor and control the x/y position and x/y speed of the walker2 game item
   positionX2: 5,
   positionY2: 5,
   speedX2: 0,
@@ -48,6 +48,8 @@ var walker2 = {       //variable that stores an object such that you can monitor
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
   $(document).on('keyup', handleKeyUp);  
+  $('#walker').on('click', handleClick);
+  $('#walker2').on('click', handleClick2);
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -120,6 +122,14 @@ var walker2 = {       //variable that stores an object such that you can monitor
     }
   }
 
+  function handleClick() {        // checks for when the 'walker' game item is left clicked on and calls the 'chaneWalkerColor' function
+    changeWalkerColor();
+  }
+
+  function handleClick2() {       // checks for when the 'walker2' game item is left clicked on and calls the 'chaneWalkerColor' function
+    changeWalker2Color();
+  }
+
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -161,6 +171,22 @@ var walker2 = {       //variable that stores an object such that you can monitor
     if (walker2.positionY2 > boardHeight - walker2.height2|| walker2.positionY2 < 0) {
       walker2.positionY2 -= walker2.speedY2;
     }
+  }
+
+  function changeWalkerColor () {       // changes the 'walker' game item color to a random one when left clicked on
+    var r = Math.random(0, 255) * 100;
+    var g = Math.random(0, 255) * 100;
+    var b = Math.random(0, 255) * 100;
+    var color = "rgb("+ r + "," + g + "," + b + ")";
+    $('#walker').css('background-color', color); 
+  }
+
+  function changeWalker2Color () {       // changes the 'walker2' game item color to a random one when left clicked on
+    var r = Math.random(0, 255) * 100;
+    var g = Math.random(0, 255) * 100;
+    var b = Math.random(0, 255) * 100;
+    var color = "rgb("+ r + "," + g + "," + b + ")";
+    $('#walker2').css('background-color', color); 
   }
 
 }
