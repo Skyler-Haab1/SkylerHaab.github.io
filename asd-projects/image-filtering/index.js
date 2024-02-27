@@ -21,7 +21,8 @@ function resetAndRender() {
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
   applyFilter(reddify);
-  applyFilterNoBackground("rgb(150, 150, 150)");
+  applyFilterNoBackground(decreaseBlue);
+  applyFilterNoBackground(increaseGreenByBlue);
   
   // do not change the below line of code
   render($("#display"), image);
@@ -32,21 +33,34 @@ function applyAndRender() {
 /////////////////////////////////////////////////////////
 
 // TODO 1, 2 & 4: Create the applyFilter function here
-function applyFilter(applyFilterFunction, rowIndex, colIndex) {
-  for (let rowIndex = 0; rowIndex < image.length; ++rowIndex) {
-    for (let colIndex = 0; colIndex < image[rowIndex].length; ++colIndex) {
-      let rgbString = image[rowIndex][colIndex];
-      let rgbNumbers = rgbStringToArray(rgbString);
-      applyFilterFunction(rgbNumbers);
-      let newRgbString = rgbArrayToString(rgbNumbers);
-      image[rowIndex][colIndex] = newRgbString;
+function applyFilter(filterFunction) {
+  for (var i = 0; i < image.length; i++) {
+    for(var j = 0; j < image[i].length; j++) {
+        var rgbString = image[i][j];
+        var rgbNumbers = rgbStringToArray(rgbString);
+        filterFunction(rgbNumbers);
+        rgbString = rgbArrayToString(rgbNumbers);
+        image[i][j] = rgbString;
+      }
     }
   }
-}
+
+
 
 // TODO 7: Create the applyFilterNoBackground function
-function applyFilterNoBackground() {
-  
+function applyFilterNoBackground (filterFunction) {
+  var backgroundColor = image[0][0];
+  for (var i = 0; i < image.length; i++) {
+    for(var j = 0; j < image[i].length; j++) {
+      if (image[i][j] !== backgroundColor) {
+        var rgbString = image[i][j];
+        var rgbNumbers = rgbStringToArray(rgbString);
+        filterFunction(rgbNumbers);
+        rgbString = rgbArrayToString(rgbNumbers);
+        image[i][j] = rgbString;
+      }
+    }
+  }
 }
 
 // TODO 5: Create the keepInBounds function
