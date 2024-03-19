@@ -1,5 +1,7 @@
 #fullContainer {
     width:100%;
+    background: rgb(37, 37, 37);
+    color: rgb(255, 255, 255)
 }
 #buttonContainer {
     margin:auto;
@@ -9,8 +11,9 @@
     margin: auto;
     width: 100%;
     border: 2px darkgray double;
-    background: lightgray;
+    background: rgb(27, 4, 128);
     font-size: 30px;
+    color: rgb(255, 255, 255)
 }
 #sortContainer {
     display: table;
@@ -20,7 +23,7 @@
 .subContainer {
     display: inline-block;
     width:45%;
-    border: 4px forestgreen groove;
+    border: 4px rgb(169,169,169,255) groove;
     margin-top: 1.25%;
 }
 #bubbleArea {
