@@ -1,21 +1,72 @@
 
 body {
-  background-color: darkgreen;
+  background-color: rgb(37, 37, 37);
+  background-image: url("");
 }
 
 #board {
-  width: 440px;
-  height: 440px;
+  width: 1900px;
+  height: 800px;
   border: 1px solid white;
   background-color: black;
-  position: relative;
+  position: absolute;
+  top: 100px;
 }
 
-#gameItem {
-  background-color: teal;
-  width: 50px;
-  height: 50px;
+#ball {
+  background-color: rgb(255, 255, 255);
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
   position: absolute;
-/*   left: 100px; */  /* Uncomment if you want to set a "starting" position */
-/*   top: 100px;  */  /* Uncomment if you want to set a "starting" position */
+  left: 942px;
+  top: 450px;
 }
+
+#centerLine {
+  background-color: rgb(255, 255, 255);
+  width: 1px;
+  height: 790px;
+  border-radius: 15px;
+  position: absolute;
+  top: 103px;
+  left: 954px;
+  border-style: dotted;
+}
+
+#leftPaddle {
+  background-color: rgb(255, 255, 255);
+  width: 20px;
+  height: 170px;
+  border-radius: 15px;
+  position: absolute;
+  top: 407px;
+  left: 20px;
+}
+
+#rightPaddle {
+  background-color: rgb(255, 255, 255);
+  width: 20px;
+  height: 170px;
+  border-radius: 15px;
+  position: absolute;
+  top: 407px;
+  left: 1875px;
+}
+
+#player1Score {
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#player2Score {
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+

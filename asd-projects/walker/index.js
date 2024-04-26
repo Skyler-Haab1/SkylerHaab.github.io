@@ -122,11 +122,11 @@ var walker2 = {       // variable that stores an object such that you can monito
     }
   }
 
-  function handleClick() {        // checks for when the 'walker' game item is left clicked on and calls the 'chaneWalkerColor' function
+  function handleClick() {        // checks for when the 'walker' game item is left clicked on and calls the 'changeWalkerColor' function
     changeWalkerColor();
   }
 
-  function handleClick2() {       // checks for when the 'walker2' game item is left clicked on and calls the 'chaneWalkerColor' function
+  function handleClick2() {       // checks for when the 'walker2' game item is left clicked on and calls the 'changeWalkerColor' function
     changeWalker2Color();
   }
 
@@ -169,9 +169,7 @@ var walker2 = {       // variable that stores an object such that you can monito
       walker2.positionX2 -= walker2.speedX2;
     }
     if (walker2.positionY2 > boardHeight - walker2.height2|| walker2.positionY2 < 0) {
-      walker2.positionY2 -= walker2.speedY2;
-    }
-  }
+    
 
   function changeWalkerColor () {       // changes the 'walker' game item color to a random one when left clicked on
     var r = Math.random(0, 255) * 100;
@@ -190,3 +188,6 @@ var walker2 = {       // variable that stores an object such that you can monito
   }
 
 }
+  walker2.positionY2 -= walker2.speedY2;
+    }
+  }
