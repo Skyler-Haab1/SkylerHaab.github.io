@@ -14,7 +14,7 @@ body {
 }
 
 #ball {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 0, 0);
   width: 30px;
   height: 30px;
   border-radius: 50px;
@@ -27,7 +27,6 @@ body {
   background-color: rgb(255, 255, 255);
   width: 1px;
   height: 790px;
-  border-radius: 15px;
   position: absolute;
   top: 103px;
   left: 954px;
@@ -41,7 +40,7 @@ body {
   border-radius: 15px;
   position: absolute;
   top: 407px;
-  left: 20px;
+  left: 50px;
 }
 
 #rightPaddle {
@@ -51,22 +50,37 @@ body {
   border-radius: 15px;
   position: absolute;
   top: 407px;
-  left: 1875px;
+  left: 1845px;
 }
 
-#player1Score {
+.score {
   color: white;
   font-size: 40px;
   position: absolute;
   top: 20px;
+}
+
+#player1Score {
+  color: white;
+  font-size: 100px;
+  position: absolute;
+  top: -5px;
   left: 20px;
 }
 
 #player2Score {
   color: white;
-  font-size: 40px;
+  font-size: 100px;
   position: absolute;
-  top: 20px;
+  top: -5px;
   right: 20px;
 }
 
+#superPong {
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  top: -13px;
+  left: 48%;
+  transform: translateX(-50%);
+}

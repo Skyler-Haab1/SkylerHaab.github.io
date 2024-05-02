@@ -14,6 +14,9 @@ function runProgram(){
   const BOARD_HEIGHT = $("#board").height();
   const BALL_SPEED = 10;
   const PADDLE_SPEED = 15;
+  const WINNING_SCORE = 10;
+  let player1Score = 0;
+  let player2Score = 0;
 
   var KEY = {
     UP: 38,
@@ -22,6 +25,7 @@ function runProgram(){
     S: 83,
   };
 
+  var gameIsOver = false;
 
   // Game Item Objects
   var leftPaddle = paddleFactory("#leftPaddle");
@@ -42,9 +46,21 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    movePaddles();
-    moveBall();
-    wallCollision(ball);
+    if (!gameIsOver) {
+      movePaddles();
+      moveBall();
+      wallCollision(ball);
+      paddleCollision(ball, leftPaddle);
+      paddleCollision(ball, rightPaddle);
+      $("#player1Score").text(player1Score);
+      $("#player2Score").text(player2Score);
+      if (player1Score === WINNING_SCORE) {
+        endGame("Player 1 Wins!");
+      }
+      else if (player2Score === WINNING_SCORE) {
+        endGame("Player 2 Wins!");
+      }
+    }
   }
   
   /* 
@@ -85,6 +101,18 @@ function runProgram(){
   function movePaddles() {
     moveObject(leftPaddle);
     moveObject(rightPaddle);
+    if (leftPaddle.y < 107) {
+      leftPaddle.y = 107;
+    }
+    else if (leftPaddle.y + leftPaddle.height > BOARD_HEIGHT + 100) {
+      leftPaddle.y = BOARD_HEIGHT - leftPaddle.height + 100;
+    }
+    if (rightPaddle.y < 107) {
+      rightPaddle.y = 107;
+    }
+    else if (rightPaddle.y + rightPaddle.height > BOARD_HEIGHT + 100) {
+      rightPaddle.y = BOARD_HEIGHT - rightPaddle.height + 100;
+    }
   }
 
   function moveBall() {
@@ -92,14 +120,48 @@ function runProgram(){
   }
 
   function wallCollision(object) {
-    if (object.y <= 0 || object.y + object.height >= BOARD_HEIGHT) {
+    if (object.y <= 107 || object.y + object.height >= BOARD_HEIGHT + 100) {
       object.speedY *= -1;
     }
     if (object.x <= 0 || object.x + object.width >= BOARD_WIDTH) {
       object.speedX *= -1;
+      if (object.x <= 0) {
+        player2Score++;
+        $("#player2Score").text(player2Score);
+        if (player2Score === WINNING_SCORE) {
+          endGame("Player 2 Wins!");
+        } else {
+          startBall();
+        }
+      }
+      else {
+        player1Score++;
+        $("#player1Score").text(player1Score);
+        if (player1Score === WINNING_SCORE) {
+          endGame("Player 1 Wins!");
+        }
+        else {
+          startBall();
+        }
+      }
+    }
+    if (
+      object.x <= leftPaddle.x + leftPaddle.width &&
+      object.x + object.width >= leftPaddle.x &&
+      object.y <= leftPaddle.y + leftPaddle.height &&
+      object.y + object.height >= leftPaddle.y
+    ) {
+      object.speedX *= -1;
+    }
+    if (
+      object.x <= rightPaddle.x + rightPaddle.width &&
+      object.x + object.width >= rightPaddle.x &&
+      object.y <= rightPaddle.y + rightPaddle.height &&
+      object.y + object.height >= rightPaddle.y
+    ) {
+      object.speedX *= -1;
     }
   }
-  
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
@@ -149,12 +211,22 @@ function runProgram(){
     });
   }
 
-  function endGame() {
+  function endGame(winner) {
     // stop the interval timer
     clearInterval(interval);
 
     // turn off event handlers
     $(document).off();
+    $("#centerLine").hide();
+    $("body").append(`<div id="winningScreen">${winner}<br>Press 'CTRL + R' to Play Again :)</div>`);
+    $("#winningScreen").css({
+      color: "white",
+      fontSize: "80px",
+      textAlign: "center",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    });
   }
-  
 }
